@@ -35,16 +35,19 @@
                     <li>
                         GET-запрос <i>http://localhost:8081/tenders</i> - запрос списка тендеров(возможны GET-параметры name и date).
                         Параметр date должен быть в формате YYYY-mm-dd. <br/>
+                        Токен доступа - Xgh5zYf0 (заголовок "Authorization: Bearer Xgh5zYf0"). <br/>
                         Пример - <i>http://localhost:8081/tenders?name=Тестовая&date=2022-09-05</i>
                     </li>
                     <li>
                         GET-запрос <i>http://localhost:8081/tenders/{id}</i> - запрос одного тендера(по параметру id).<br/>
+                        Токен доступа - Xgh5zYf0 (заголовок "Authorization: Bearer Xgh5zYf0"). <br/>
                         Пример - <i>http://localhost:8081/tenders/25</i>
                     </li>
                     <li>
                         POST-запрос <i>http://localhost:8081/tenders</i> - для создания тендера. <br/>
                         С этим запросом должен отправляться json с параметрами <i>"external_code", "number", "status", "name"</i>.
                         Каждый параметр должен быть заполнен. <br/>
+                        Токен доступа - Xgh5zYf0 (заголовок "Authorization: Bearer Xgh5zYf0"). <br/>
                         Пример:
                         <i>
                             {
