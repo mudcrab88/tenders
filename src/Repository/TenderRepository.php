@@ -44,9 +44,12 @@ class TenderRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Tender[] Returns an array of Tender objects
+     * @param array $params
+     *
+     * @return array|null
+     * @throws \Exception
      */
-    public function findByParams(array $params): array
+    public function findByParams(array $params): ?array
     {
         $tenders = $this->createQueryBuilder('t');
 
@@ -64,7 +67,16 @@ class TenderRepository extends ServiceEntityRepository
                 ->setParameter('date_end',   $date->format('Y-m-d 23:59:59'));
         }
 
-        return $tenders->getQuery()->getArrayResult();
+        return $tenders->getQuery()->getResult();
+    }
+
+    public function findById(int $id): ?Tender
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
