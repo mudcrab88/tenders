@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Работа с тендерами{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -14,6 +14,49 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <h2>Тендеры</h2>
+            <div>
+                <h3>Установка</h3>
+                <ol>
+                    <li>Необходим установленный docker, docker-compose, php</li>
+                    <li>Клонировать репозиторий, перейти в склонированную папку</li>
+                    <li>Выполнить make composer-install</li>
+                    <li>Выполнить последовательно make build и make up для создания контейнеров</li>
+                    <li>
+                        Выполнить make migrate для запуска миграций, после окончания выполнить make load-tenders
+                        для загрузки тендеров из файла test_task_data.csv
+                    </li>
+                    <li>Зайти на http://localhost:8081/ (при необходимости изменить права на папку проекта)</li>
+                    <li>Токен доступа - Xgh5zYf0 (заголовок "Authorization: Bearer Xgh5zYf0")</li>
+                </ol>
+                <h3>Использование</h3>
+                <ol>
+                    <li>
+                        GET-запрос <i>http://localhost:8081/tenders</i> - запрос списка тендеров(возможны GET-параметры name и date).
+                        Параметр date должен быть в формате YYYY-mm-dd. <br/>
+                        Пример - <i>http://localhost:8081/tenders?name=Тестовая&date=2022-09-05</i>
+                    </li>
+                    <li>
+                        GET-запрос <i>http://localhost:8081/tenders/{id}</i> - запрос одного тендера(по параметру id).<br/>
+                        Пример - <i>http://localhost:8081/tenders/25</i>
+                    </li>
+                    <li>
+                        POST-запрос <i>http://localhost:8081/tenders</i> - для создания тендера. <br/>
+                        С этим запросом должен отправляться json с параметрами <i>"external_code", "number", "status", "name"</i>.
+                        Каждый параметр должен быть заполнен. <br/>
+                        Пример:
+                        <i>
+                            {
+                            "external_code": 666777888,
+                            "number": "17660-256",
+                            "status": "Закрыто",
+                            "name": "Тестовый тендер"
+                            }
+                        </i>
+                    </li>
+                </ol>
+            </div>
+        {% endblock %}
     </body>
 </html>
