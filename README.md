@@ -3,10 +3,10 @@
 Работа с тендерами.
 
 Установка
-1) Необходим установленный docker, docker-compose, php
+1) Необходим установленный docker, docker-compose, php, make
 2) Клонировать репозиторий, перейти в склонированную папку
-3) Выполнить make composer-install
-4) Выполнить последовательно make build и make up для создания контейнеров
+3) Выполнить последовательно make build и make up для создания контейнеров
+4) Выполнить make composer-install
 5) Выполнить make migrate для запуска миграций, после окончания выполнить make load-tenders для загрузки тендеров из файла test_task_data.csv
 6) Зайти на http://localhost:8081/ (при необходимости изменить права на папку проекта)
 7) Токен доступа - Xgh5zYf0 (заголовок "Authorization: Bearer Xgh5zYf0")
